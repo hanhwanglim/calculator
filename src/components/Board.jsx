@@ -4,14 +4,17 @@ import {Numbers, Operators, Trigonometry} from '../Keys';
 
 /**
  * Board area contains Buttonss for numbers and operations
+ * @param {React.props} props
  * @return {React.Component} Board area
  */
-function Board() {
+function Board(props) {
+  const [handleNormalButtons, handleTrigonometryButtons] = props.handleButton;
   const createNumberButtons = () => {
     return Numbers.map((number) => {
       return (
         <Buttons
           key={number.id}
+          handleButton={handleNormalButtons}
           {...number}
         />
       );
@@ -23,6 +26,7 @@ function Board() {
       return (
         <Buttons
           key={operator.id}
+          handleButton={handleNormalButtons}
           {...operator}
         />
       );
@@ -34,6 +38,7 @@ function Board() {
       return (
         <Buttons
           key={triganometry.id}
+          handleButton={handleTrigonometryButtons}
           {...triganometry}
         />
       );

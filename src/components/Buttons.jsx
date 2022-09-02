@@ -7,7 +7,9 @@ import React from 'react';
  */
 function Buttons(props) {
   return (
-    <button>
+    <button
+      onClick={() => props.handleButton(props.display)}
+    >
       {props.label}
     </button>
   );

@@ -2,11 +2,18 @@ import React from 'react';
 
 /**
  * Display area of the calculator
+ * @param {React.props} props
  * @return {React.Component} Display area
  */
-function Display() {
+function Display(props) {
   return (
-    <h1>Display</h1>
+    <form>
+      <input
+        type="text"
+        disabled={true}
+        placeholder={props.display.join('')}
+      />
+    </form>
   );
 }
 
