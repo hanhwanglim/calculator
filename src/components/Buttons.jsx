@@ -2,11 +2,14 @@ import React from 'react';
 
 /**
  * A button on the calculator
+ * @param {React.props} props
  * @return {React.Component} Button
  */
-function Buttons() {
+function Buttons(props) {
   return (
-    <h1>Button</h1>
+    <button>
+      {props.label}
+    </button>
   );
 }
 
