@@ -1,6 +1,13 @@
+import React from 'react';
+import Calculator from './components/Calculator';
+
+/**
+ * Calculator app
+ * @return {React.Component} Calculator app
+ */
 function App() {
   return (
-    <h1>Hello world</h1>
+    <Calculator />
   );
 }
 
