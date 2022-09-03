@@ -47,6 +47,16 @@ const Operators = [
     id: 'delete',
     label: 'del',
   },
+  {
+    id: 'AC',
+    label: 'AC',
+    display: '',
+  },
+  {
+    id: 'Ans',
+    label: 'Ans',
+    display: 'Ans',
+  },
 ];
 
 const Trigonometry = [

@@ -15,11 +15,13 @@ function Calculator() {
   const [syntaxError, setSyntaxError] = useState(false);
 
   const handleNormalButtons = (value) => {
+    const input = (value === 'Ans') ? history.at(-1).answer : value;
+
     setDisplayExpression((prevDisplayExpression) => {
       return [...prevDisplayExpression, value];
     });
 
-    setExpression((prevExpression) => [...prevExpression, value]);
+    setExpression((prevExpression) => [...prevExpression, input]);
   };
 
   const handleTrigonometryButtons = (value) => {
@@ -71,6 +73,7 @@ function Calculator() {
     handleTrigonometryButtons,
     calculate,
     deleteExpression,
+    replaceExpression,
   ];
 
   return (
@@ -80,7 +83,6 @@ function Calculator() {
         history={history}
         handleButton={replaceExpression}
       />
-      {history.length > 0 && <h2>{history.at(-1).ans}</h2>}
       <Display
         display={displayExpression}
       />

@@ -13,6 +13,7 @@ function History(props) {
       return (
         <Dropdown.Item
           key={`${index}:${expression}=${answer}`}
+          onClick={() => props.handleButton(answer)}
         >
           {`${expression} = ${answer}`}
         </Dropdown.Item>

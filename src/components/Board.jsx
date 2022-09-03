@@ -8,9 +8,13 @@ import {Numbers, Operators, Trigonometry} from '../Keys';
  * @return {React.Component} Board area
  */
 function Board(props) {
-  const [handleNormalButtons,
+  const [
+    handleNormalButtons,
     handleTrigonometryButtons,
-    calculate, deleteExpression] = props.handleButton;
+    calculate,
+    deleteExpression,
+    replaceExpression,
+  ] = props.handleButton;
 
   const createNumberButtons = () => {
     return Numbers.map((number) => {
@@ -27,9 +31,10 @@ function Board(props) {
   const createOperatorButtons = () => {
     return Operators.map((operator) => {
       let handleButton;
+      handleButton = handleNormalButtons;
       if (operator.id === 'equals') handleButton = calculate;
-      else if (operator.id === 'delete') handleButton = deleteExpression;
-      else handleButton = handleNormalButtons;
+      if (operator.id === 'delete') handleButton = deleteExpression;
+      if (operator.id === 'AC') handleButton = replaceExpression;
 
       return (
         <Buttons
