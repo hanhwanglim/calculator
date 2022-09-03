@@ -15,12 +15,18 @@ const Numbers = [
   {id: '3', label: '3', display: '3'},
 ];
 
+/**
+ * Misc stores miscellaneous buttons such as 0 and .
+ */
 const Misc = [
   {id: '0',  label: '0',  display: '0'},
   {id: '.',  label: '.',  display: '.'},
   {id: '00', label: '00', display: '00'},
 ];
 
+/**
+ * Operators stores functional buttons
+ */
 const Operators = [
   {id: 'delete',   label: 'del', display: ''},
   {id: 'AC',       label: 'AC',  display: ''},
