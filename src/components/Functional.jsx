@@ -12,7 +12,7 @@ function createTrigonometricButtons(props) {
 
   const trigonometryFunctions = Trigonometry.map((triganometry) => {
     return (
-      <div key={`col-${triganometry.id}`} className="column">
+      <div key={`col-${triganometry.id}`} className="col">
         <Buttons
           key={triganometry.id}
           handleButton={handleTrigonometryButtons}
@@ -35,7 +35,7 @@ function createBracketButtons(props) {
 
   const bracketButtons = Bracket.map((bracket, index) => {
     return (
-      <div key={`col-${bracket.id}`} className="column">
+      <div key={`col-${bracket.id}`} className="col">
         <Buttons
           key={bracket.id}
           handleButton={handleNormalButtons}
@@ -58,8 +58,8 @@ function Functional(props) {
 
   return (
     <div>
-      <div className="btn-group">{trigonometricButtons}</div>
-      <div className="btn-group">{bracketButtons}</div>
+      <div className="row">{trigonometricButtons}</div>
+      <div className="row">{bracketButtons}</div>
     </div>
   );
 }

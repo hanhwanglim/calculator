@@ -14,7 +14,7 @@ function createKeypad(props) {
   for (let i = 0; i < Numbers.length; i += 3) {
     const buttonRow = Numbers.slice(i, i + 3).map((number, index) => {
       return (
-        <div key={`col-${number.id}`} className="column">
+        <div key={`col-${number.id}`} className="col-1">
           <Buttons
             key={number.id}
             handleButton={props.handleButton}
@@ -29,7 +29,7 @@ function createKeypad(props) {
   // Create buttons [0, '.', '00']
   const misc = Misc.map((value) => {
     return (
-      <div key={`col-misc-${value.id}`} className="column">
+      <div key={`col-misc-${value.id}`} className="col-1">
         <Buttons
           key={value.id}
           handleButton={props.handleButton}
@@ -52,7 +52,7 @@ function Keypad(props) {
   const rows = createKeypad(props);
   const keypadRows = rows.map((row, index) => {
     return (
-      <div key={`row-${index}`} className="btn-group">{row}</div>
+      <div key={`row-${index}`} className="row align-items-start">{row}</div>
     );
   });
 

@@ -8,6 +8,7 @@ import React from 'react';
 function Buttons(props) {
   return (
     <button
+      className="btn btn-light"
       onClick={() => props.handleButton(props.display)}
     >
       {props.label}

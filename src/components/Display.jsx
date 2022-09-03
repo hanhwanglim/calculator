@@ -8,18 +8,17 @@ import History from './History';
  */
 function Display(props) {
   return (
-    <div>
+    <div className="input-group mb-3">
       <History
         history={props.history}
         handleButton={props.handleButton}
       />
-      <form>
-        <input
-          type="text"
-          disabled={true}
-          placeholder={props.display.join('')}
-        />
-      </form>
+      <input
+        type="text"
+        className="form-control"
+        disabled={true}
+        placeholder={props.display.join('')}
+      />
       {props.syntaxError && <h2>Syntax Error</h2>}
     </div>
   );

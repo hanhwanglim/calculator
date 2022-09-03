@@ -9,12 +9,14 @@ function createHistoryList(props) {
   const historyList = props.history.map((history, index) => {
     const {expression, answer} = history;
     return (
-      <a
-        key={`${index}:${expression}=${answer}`}
-        onClick={() => props.handleButton(answer)}
-      >
-        {`${expression} = ${answer}`}
-      </a>
+      <li key={`${index}:${expression}=${answer}`}>
+        <a
+          className="dropdown-item"
+          onClick={() => props.handleButton(answer)}
+        >
+          {`${expression} = ${answer}`}
+        </a>
+      </li>
     );
   });
 
@@ -31,10 +33,15 @@ function History(props) {
 
   return (
     <div className="dropdown">
-      <button className="dropbtn">History</button>
-      <div className="dropdown-content">
+      <button
+        className="btn btn-outline-secondary dropdown-toggle"
+        type="button"
+      >
+        History
+      </button>
+      <ul className="dropdown-menu">
         {historyList}
-      </div>
+      </ul>
     </div>
   );
 }

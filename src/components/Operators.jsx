@@ -68,7 +68,9 @@ function Operator(props) {
 
   return (
     <div className="container">
-      {operatorRows}
+      <div className="row align-items-start">
+        {operatorRows}
+      </div>
     </div>
   );
 }

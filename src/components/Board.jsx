@@ -20,12 +20,12 @@ function Board(props) {
         handleButton={[handleNormalButtons, handleTrigonometryButtons]}
       />
       <div className="row">
-        <div className="column">
+        <div className="col">
           <Keypad
             handleButton={handleNormalButtons}
           />
         </div>
-        <div className="column">
+        <div className="col">
           <Operator
             handleButton={props.handleButton}
           />
