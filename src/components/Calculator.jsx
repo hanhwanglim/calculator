@@ -2,6 +2,7 @@ import React from 'react';
 import Display from './Display';
 import Board from './Board';
 import {useState} from 'react';
+import History from './History';
 
 /**
  * Calculator
@@ -38,26 +39,31 @@ function Calculator() {
     try {
       const ans = eval(exp).toString();
       setSyntaxError(false);
-      setHistory((prevHistory) => [...prevHistory, {displayExpression, ans}]);
+      setHistory((prevHistory) => {
+        const hist = {
+          expression: exp,
+          answer: ans,
+        };
+        return [...prevHistory, hist];
+      });
       setExpression(() => ans.split(''));
       setDisplayExpression(() => ans.split(''));
-      console.log(expression);
-      console.log(displayExpression);
     } catch (error) {
       setSyntaxError(true);
     }
   };
 
   const deleteExpression = () => {
-    // console.log(displayExpression);
-
     setDisplayExpression((prevDisplayExpression) => {
       return prevDisplayExpression.slice(0, -1);
     });
 
-    // console.log(displayExpression);
-
     setExpression((prevExpression) => prevExpression.slice(0, -1));
+  };
+
+  const replaceExpression = (value) => {
+    setDisplayExpression(() => value.split(''));
+    setExpression(() => value.split(''));
   };
 
   const handleButton = [
@@ -70,6 +76,10 @@ function Calculator() {
   return (
     <div>
       {syntaxError && <h2>Syntax Error</h2>}
+      <History
+        history={history}
+        handleButton={replaceExpression}
+      />
       {history.length > 0 && <h2>{history.at(-1).ans}</h2>}
       <Display
         display={displayExpression}
