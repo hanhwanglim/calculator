@@ -1,5 +1,25 @@
 import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
+
+/**
+ * Creates dropdown item for history
+ * @param {React.props} props
+ * @return {React.Component} dropdown items
+ */
+function createHistoryList(props) {
+  const historyList = props.history.map((history, index) => {
+    const {expression, answer} = history;
+    return (
+      <a
+        key={`${index}:${expression}=${answer}`}
+        onClick={() => props.handleButton(answer)}
+      >
+        {`${expression} = ${answer}`}
+      </a>
+    );
+  });
+
+  return historyList;
+}
 
 /**
  * Calculation history
@@ -7,30 +27,15 @@ import Dropdown from 'react-bootstrap/Dropdown';
  * @return {React.Component} history dropdown
  */
 function History(props) {
-  const historyList = () => {
-    return props.history.map((history, index) => {
-      const {expression, answer} = history;
-      return (
-        <Dropdown.Item
-          key={`${index}:${expression}=${answer}`}
-          onClick={() => props.handleButton(answer)}
-        >
-          {`${expression} = ${answer}`}
-        </Dropdown.Item>
-      );
-    });
-  };
+  const historyList = createHistoryList(props);
 
   return (
-    <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        History
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu>
-        {historyList()}
-      </Dropdown.Menu>
-    </Dropdown>
+    <div className="dropdown">
+      <button className="dropbtn">History</button>
+      <div className="dropdown-content">
+        {historyList}
+      </div>
+    </div>
   );
 }
 

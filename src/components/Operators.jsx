@@ -22,12 +22,18 @@ function createOperatorButtons(props) {
   for (let i = 0; i < Operators.length; i += 2) {
     const buttonRow = Operators.slice(i, i + 2).map((operator, index) => {
       let handleButton;
+
+      // Assigning operations to their respective handleButton
       handleButton = handleNormalButtons;
       if (operator.id === 'equals') handleButton = calculate;
       if (operator.id === 'delete') handleButton = deleteExpression;
       if (operator.id === 'AC') handleButton = replaceExpression;
+
       return (
-        <div key={`col-${operator.id}`} className="column">
+        <div
+          key={`col-${operator.id}`}
+          className="column"
+        >
           <Buttons
             key={operator.id}
             handleButton={handleButton}
@@ -51,7 +57,12 @@ function Operator(props) {
   const rows = createOperatorButtons(props);
   const operatorRows = rows.map((row, index) => {
     return (
-      <div key={`row-${index}`} className="btn-group">{row}</div>
+      <div
+        key={`row-${index}`}
+        className="btn-group"
+      >
+        {row}
+      </div>
     );
   });
 

@@ -13,16 +13,27 @@ function Calculator() {
   const [history, setHistory] = useState([]);
   const [syntaxError, setSyntaxError] = useState(false);
 
+  /**
+   * Adds the button value to the display and expression
+   * @param {String} value button value
+   */
   const handleNormalButtons = (value) => {
-    const input = (value === 'Ans') ? history.at(-1).answer : value;
+    let input;
+    if (value === 'Ans') input = history.at(-1).answer;
+    else if (value === '00') input = value.split('');
+    else input = [value];
 
     setDisplayExpression((prevDisplayExpression) => {
-      return [...prevDisplayExpression, value];
+      return [...prevDisplayExpression, ...input];
     });
 
-    setExpression((prevExpression) => [...prevExpression, input]);
+    setExpression((prevExpression) => [...prevExpression, ...input]);
   };
 
+  /**
+   * Special handler specifically for trigonometric functions
+   * @param {String} value button value
+   */
   const handleTrigonometryButtons = (value) => {
     const prevIsNumber = !isNaN(expression.at(-1));
     const operator = prevIsNumber ? `*Math.${value}` : `Math.${value}`;
@@ -34,12 +45,26 @@ function Calculator() {
     setExpression((prevExpression) => [...prevExpression, operator]);
   };
 
+  /**
+   * Replaces the display and expression with value
+   * @param {String} value value
+   */
+  const replaceExpression = (value) => {
+    setDisplayExpression(() => value.split(''));
+    setExpression(() => value.split(''));
+  };
+
+  /**
+   * Computes the expression and replaces display with that value
+   */
   const calculate = () => {
     const exp = expression.join('');
 
     try {
       const ans = eval(exp).toString();
       setSyntaxError(false);
+
+      // Add expression and answer to history
       setHistory((prevHistory) => {
         const hist = {
           expression: exp,
@@ -47,24 +72,22 @@ function Calculator() {
         };
         return [...prevHistory, hist];
       });
-      setExpression(() => ans.split(''));
-      setDisplayExpression(() => ans.split(''));
+
+      replaceExpression(ans);
     } catch (error) {
       setSyntaxError(true);
     }
   };
 
+  /**
+   * Delete an operation or button from expression and display
+   */
   const deleteExpression = () => {
     setDisplayExpression((prevDisplayExpression) => {
       return prevDisplayExpression.slice(0, -1);
     });
 
     setExpression((prevExpression) => prevExpression.slice(0, -1));
-  };
-
-  const replaceExpression = (value) => {
-    setDisplayExpression(() => value.split(''));
-    setExpression(() => value.split(''));
   };
 
   const handleButton = [
@@ -81,6 +104,7 @@ function Calculator() {
         display={displayExpression}
         syntaxError={syntaxError}
         history={history}
+        handleButton={replaceExpression}
       />
       <Board
         handleButton={handleButton}

@@ -3,12 +3,14 @@ import {Trigonometry, Bracket} from '../Keys';
 import Buttons from './Buttons';
 
 /**
+ * Creates button row for trigonometric functions
  * @param {React.props} props
- * @return {React.Component} functional button component
+ * @return {React.Component} trigonometric component
  */
-function Functional(props) {
-  const [handleNormalButtons, handleTrigonometryButtons] = props.handleButton;
-  const trigonometryFunctions = Trigonometry.map((triganometry, index) => {
+function createTrigonometricButtons(props) {
+  const [, handleTrigonometryButtons] = props.handleButton;
+
+  const trigonometryFunctions = Trigonometry.map((triganometry) => {
     return (
       <div key={`col-${triganometry.id}`} className="column">
         <Buttons
@@ -19,6 +21,17 @@ function Functional(props) {
       </div>
     );
   });
+
+  return trigonometryFunctions;
+}
+
+/**
+ * Create button row for brackets
+ * @param {React.props} props
+ * @return {React.Component} bracket button row
+ */
+function createBracketButtons(props) {
+  const [handleNormalButtons] = props.handleButton;
 
   const bracketButtons = Bracket.map((bracket, index) => {
     return (
@@ -32,9 +45,20 @@ function Functional(props) {
     );
   });
 
+  return bracketButtons;
+}
+
+/**
+ * @param {React.props} props
+ * @return {React.Component} functional button component
+ */
+function Functional(props) {
+  const trigonometricButtons = createTrigonometricButtons(props);
+  const bracketButtons = createBracketButtons(props);
+
   return (
     <div>
-      <div className="btn-group">{trigonometryFunctions}</div>
+      <div className="btn-group">{trigonometricButtons}</div>
       <div className="btn-group">{bracketButtons}</div>
     </div>
   );

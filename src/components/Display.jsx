@@ -11,7 +11,7 @@ function Display(props) {
     <div>
       <History
         history={props.history}
-        handleButton={props.replaceExpression}
+        handleButton={props.handleButton}
       />
       <form>
         <input
