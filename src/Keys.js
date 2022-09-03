@@ -30,6 +30,16 @@ const Operators = [
     display: ' / ',
   },
   {
+    id: 'open parenthesis',
+    label: '(',
+    display: '(',
+  },
+  {
+    id: 'close parenthesis',
+    label: ')',
+    display: ')',
+  },
+  {
     id: 'equals',
     label: '=',
   },
