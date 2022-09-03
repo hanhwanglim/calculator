@@ -1,4 +1,5 @@
 import React from 'react';
+import History from './History';
 
 /**
  * Display area of the calculator
@@ -7,13 +8,20 @@ import React from 'react';
  */
 function Display(props) {
   return (
-    <form>
-      <input
-        type="text"
-        disabled={true}
-        placeholder={props.display.join('')}
+    <div>
+      <History
+        history={props.history}
+        handleButton={props.replaceExpression}
       />
-    </form>
+      <form>
+        <input
+          type="text"
+          disabled={true}
+          placeholder={props.display.join('')}
+        />
+      </form>
+      {props.syntaxError && <h2>Syntax Error</h2>}
+    </div>
   );
 }
 

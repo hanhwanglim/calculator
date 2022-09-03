@@ -2,7 +2,6 @@ import React from 'react';
 import Display from './Display';
 import Board from './Board';
 import {useState} from 'react';
-import History from './History';
 
 /**
  * Calculator
@@ -78,13 +77,10 @@ function Calculator() {
 
   return (
     <div>
-      {syntaxError && <h2>Syntax Error</h2>}
-      <History
-        history={history}
-        handleButton={replaceExpression}
-      />
       <Display
         display={displayExpression}
+        syntaxError={syntaxError}
+        history={history}
       />
       <Board
         handleButton={handleButton}
